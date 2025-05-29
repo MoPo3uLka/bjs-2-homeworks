@@ -10,27 +10,25 @@ Student.prototype.setSubject = function(subjectName) {
 }
 
 Student.prototype.addMarks = function(...marks) {
-	if (typeof this.marks === false || this.marks === undefined) {
+	if (this.marks === undefined) {
 		return 0;
 	}
 
-	this.marks = [...this.marks, ...marks];
+	this.marks.push(...marks);
 }
 
 Student.prototype.getAverage = function() {
-	if (typeof this.marks === false || this.marks === undefined) {
+	if (this.marks === undefined) {
 		return 0;
 	}
 
-	let result = this.marks.reduce((acc, item, index, arr) => {
+	return this.marks.reduce((acc, item, index, arr) => {
 		acc += item;
 		if (index === arr.length - 1) {
 			return acc / arr.length
 		}
 		return acc;
 	}, 0);
-
-	return result;
 }
 
 Student.prototype.exclude = function(reason) {
